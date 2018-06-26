@@ -5,25 +5,25 @@ import {Button, Card, CardSection, Input, Spinner} from './common';
 
 class LoginForm extends Component {
 
-    state = { email: '', password: '' , error: '', loading: false};
+    state = { email: '', password: '' , error: '', loading: false }
 
     handleButtonPress() {
         const { email, password } = this.state;
+
         this.setState({ error: '', loading: true });
+
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(this.onLoginSuccess.bind(this))
             .catch(() => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
                     .then(this.onLoginSuccess.bind(this))
-                    .catch(() => {
-                        this.onLoginFail.bind(this);
-                    });
+                    .catch(this.onLoginFail.bind(this));
             });
-    }
+    };
 
     renderButton() {
         if (this.state.loading) {
-            return <Spinner size='small'/>
+            return <Spinner size='small'/>;
         }
 
         return (
@@ -32,7 +32,6 @@ class LoginForm extends Component {
             </Button>
         );
     }
-
 
     onLoginSuccess() {
         this.setState({
