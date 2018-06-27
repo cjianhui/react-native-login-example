@@ -1,16 +1,41 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
-import firebase from 'firebase';
-import {Button, Card, CardSection, Input, Spinner} from './common';
+import React, {Component} from 'react';
+import { Button, CardSection } from './common';
+import { connect } from 'react-redux';
+import { signoutUser } from '../actions';
 
-const Home = () => {
-    return (
-        <CardSection>
-            <Button onPress={() => firebase.auth().signOut()}>
-                Log Out
-            </Button>
-        </CardSection>
-    );
+class Home extends Component {
+
+    handleButtonPress() {
+        this.props.signoutUser();
+    };
+
+    render() {
+        return (
+            <CardSection>
+                <Button onPress={this.handleButtonPress.bind(this)}>
+                    Log Out
+                </Button>
+            </CardSection>
+        );
+    }
+}
+
+const styles = {
+    errorTextStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'red'
+    }
 };
 
-export default Home;
+const mapStateToProps = ({ auth }) => {
+    const { error } = auth;
+
+    return { error };
+};
+
+const mapDispatchToProps = {
+    signoutUser
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

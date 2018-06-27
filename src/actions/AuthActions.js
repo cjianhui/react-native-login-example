@@ -6,6 +6,7 @@ import {
     SIGNUP_USER,
     SIGNUP_USER_SUCCESS,
     SIGNUP_USER_FAIL,
+    SIGNOUT_USER,
     EMAIL_CHANGED,
     PASSWORD_CHANGED
 } from './ActionTypes';
@@ -45,7 +46,8 @@ const loginUserFail = (dispatch) => {
 const loginUserSuccess = (dispatch, user) => {
     dispatch({
         type: LOGIN_USER_SUCCESS,
-        payload: user
+        payload: user,
+        loggedIn: true
     });
 };
 
@@ -70,6 +72,18 @@ const signupUserFail = (dispatch) => {
 const signupUserSuccess = (dispatch, user) => {
     dispatch({
         type: SIGNUP_USER_SUCCESS,
-        payload: user
+        payload: user,
+        loggedIn: true
     });
+};
+
+export const signoutUser = () => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: SIGNOUT_USER,
+                loggedIn: false
+            });
+        firebase.auth().signOut();
+    };
 };

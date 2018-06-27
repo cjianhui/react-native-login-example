@@ -6,5 +6,7 @@ export const SIGNUP_USER_SUCCESS = 'signup_user_success';
 export const SIGNUP_USER_FAIL = 'signup_user_fail';
 export const SIGNUP_USER = 'signup_user';
 
+export const SIGNOUT_USER = 'signout_user';
+
 export const EMAIL_CHANGED = 'email_changed';
 export const PASSWORD_CHANGED = 'password_changed';

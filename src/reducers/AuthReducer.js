@@ -14,6 +14,7 @@ const defaultState = {
     password: '',
     user: null,
     error: '',
+    loggedIn: null,
     loading: false
 };
 
@@ -26,13 +27,13 @@ export default (state = defaultState, action) => {
         case LOGIN_USER:
             return { ...state, loading: true, error: '' };
         case LOGIN_USER_SUCCESS:
-            return { ...state, ...defaultState, user: action.payload };
+            return { ...state, ...defaultState, user: action.payload, loggedIn: action.loggedIn };
         case LOGIN_USER_FAIL:
             return { ...state, error: 'Authentication Failed.', password: '', loading: false };
         case SIGNUP_USER:
             return { ...state, loading: true, error: '' };
         case SIGNUP_USER_SUCCESS:
-            return { ...state, ...defaultState, user: action.payload };
+            return { ...state, ...defaultState, user: action.payload, loggedIn: action.loggedIn };
         case SIGNUP_USER_FAIL:
             return { ...state, error: 'Email is in use.', password: '', loading: false };
         default:

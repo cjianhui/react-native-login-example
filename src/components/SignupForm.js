@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import firebase from 'firebase';
 import {Button, Card, CardSection, Input, Spinner} from './common';
+import {emailChanged, signupUser, passwordChanged} from "../actions";
+import {connect} from "react-redux";
 
 class SignupForm extends Component {
 
-    state = { email: '', password: '' , error: '', loading: false };
+    onEmailChange(text) {
+        this.props.emailChanged(text);
+    }
+
+    onPasswordChange(text) {
+        this.props.passwordChanged(text);
+    }
 
     handleButtonPress() {
-        const { email, password } = this.state;
-
-        this.setState({ error: '', loading: true });
-
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(this.onLoginSuccess.bind(this))
-            .catch(this.onLoginFail.bind(this));
+        const { email, password } = this.props;
+        this.props.signupUser(email, password);
     };
 
     renderButton() {
@@ -29,20 +31,6 @@ class SignupForm extends Component {
         );
     }
 
-    onLoginSuccess() {
-        this.setState({
-            email: '',
-            password: '',
-            error: '',
-            loading: false
-        });
-    }
-
-    onLoginFail() {
-        this.setState({ error: 'Please use another email.', loading: false});
-    }
-
-
     render() {
         return (
             <Card>
@@ -50,8 +38,8 @@ class SignupForm extends Component {
                     <Input
                         placeholder="user@gmail.com"
                         label="Email"
-                        value={this.state.email}
-                        onChangeText={email => this.setState({ email })}
+                        value={this.props.email}
+                        onChangeText={this.onEmailChange.bind(this)}
                     />
                 </CardSection>
                 <CardSection>
@@ -59,8 +47,8 @@ class SignupForm extends Component {
                         secureTextEntry
                         placeholder="password"
                         label="Password"
-                        value={this.state.password}
-                        onChangeText={password => this.setState({ password })}
+                        value={this.props.password}
+                        onChangeText={this.onPasswordChange.bind(this)}
                     />
                 </CardSection>
 
@@ -84,4 +72,16 @@ const styles = {
     }
 };
 
-export default LoginForm;
+const mapStateToProps = ({ auth }) => {
+    const { email, password, error, loading } = auth;
+
+    return { email, password, error, loading };
+};
+
+const mapDispatchToProps = {
+    emailChanged,
+    passwordChanged,
+    signupUser
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
