@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Home from './Home';
+import Spinner from './common/Spinner';
 import { Navigator } from '../routes/NavigationRouteSetup';
 
 class Router extends Component {
@@ -8,13 +9,14 @@ class Router extends Component {
             loggedIn
         } = this.props;
 
-        if (
-            loggedIn === false
-        ) {
-            return (<Navigator/>);
+        switch (loggedIn) {
+            case true:
+                return <Home/>;
+            case false:
+                return <Navigator/>;
+            default:
+                <Spinner size="large"/>
         }
-
-        return <Home />;
     }
 }
 

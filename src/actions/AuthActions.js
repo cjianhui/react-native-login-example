@@ -8,7 +8,7 @@ import {
     SIGNUP_USER_FAIL,
     SIGNOUT_USER,
     EMAIL_CHANGED,
-    PASSWORD_CHANGED
+    PASSWORD_CHANGED, TOGGLE_LOGIN_STATUS
 } from './ActionTypes';
 
 
@@ -85,5 +85,16 @@ export const signoutUser = () => {
                 loggedIn: false
             });
         firebase.auth().signOut();
+    };
+};
+
+export const toggleLoginStatus = (loggedIn) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: TOGGLE_LOGIN_STATUS,
+                loggedIn: loggedIn
+            });
+
     };
 };

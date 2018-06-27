@@ -6,7 +6,8 @@ import {
     LOGIN_USER,
     SIGNUP_USER,
     SIGNUP_USER_SUCCESS,
-    SIGNUP_USER_FAIL
+    SIGNUP_USER_FAIL,
+    TOGGLE_LOGIN_STATUS
 } from '../actions/ActionTypes';
 
 const defaultState = {
@@ -36,6 +37,8 @@ export default (state = defaultState, action) => {
             return { ...state, ...defaultState, user: action.payload, loggedIn: action.loggedIn };
         case SIGNUP_USER_FAIL:
             return { ...state, error: 'Email is in use.', password: '', loading: false };
+        case TOGGLE_LOGIN_STATUS:
+            return { ...state, loggedIn: action.loggedIn };
         default:
             return state;
     }

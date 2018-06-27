@@ -10,3 +10,5 @@ export const SIGNOUT_USER = 'signout_user';
 
 export const EMAIL_CHANGED = 'email_changed';
 export const PASSWORD_CHANGED = 'password_changed';
+
+export const TOGGLE_LOGIN_STATUS = 'toggle_login_status';

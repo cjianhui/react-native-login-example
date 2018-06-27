@@ -11,13 +11,13 @@ const navigationStackRouteConfig = {
     [`${navigationRouteKeys.Login}`]: {
         screen: Login
     },
-    [`${lnavigationRouteKeys.Signup}`]: {
+    [`${navigationRouteKeys.Signup}`]: {
         screen: Signup
     }
 };
 
 const navigationConfig = {
-    initialRouteName: `${loginNavigationRouteKeys.Login}`,
+    initialRouteName: `${navigationRouteKeys.Login}`,
     mode: 'card',
     headerMode: 'screen'
 };
