@@ -12,3 +12,5 @@ export const EMAIL_CHANGED = 'email_changed';
 export const PASSWORD_CHANGED = 'password_changed';
 
 export const TOGGLE_LOGIN_STATUS = 'toggle_login_status';
+
+export const RESET_STATE = 'reset_state';
