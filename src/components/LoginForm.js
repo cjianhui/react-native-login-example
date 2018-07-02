@@ -19,12 +19,12 @@ class LoginForm extends Component {
     if(nextProps.loggedIn){
         this.props.navigation.navigate(navigationRouteKeys.Home);
     }
+
   }
 
   handleLogin = () => {
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
-
   };
 
   handleSignup = () => {
@@ -45,7 +45,6 @@ class LoginForm extends Component {
   }
 
   render() {
-
     console.log(this.props);
 
     return (

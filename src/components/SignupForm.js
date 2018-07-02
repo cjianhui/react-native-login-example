@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Button, Card, CardSection, Input, Spinner } from './common';
-import { emailChanged, signupUser, passwordChanged } from '../actions';
+import { emailChanged, signupUser, passwordChanged, resetState } from '../actions';
 import { connect } from 'react-redux';
 
 class SignupForm extends Component {
@@ -16,7 +16,7 @@ class SignupForm extends Component {
 
   handleButtonPress() {
     const { email, password } = this.props;
-    this.props.signupUser(email, password);
+    this.props.signupUser({ email, password });
   }
 
   renderButton() {
@@ -75,9 +75,9 @@ const styles = {
 };
 
 const mapStateToProps = ({
-  email, password, error, loading
+  email, password, error, loading, loggedIn
 }) => ({
-  email, password, error, loading
+  email, password, error, loading, loggedIn
 });
 
 const mapDispatchToProps = {

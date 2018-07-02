@@ -44,7 +44,7 @@ export default (state = defaultState, action) => {
       };
     case SIGNUP_USER_FAIL:
       return {
-        ...state, error: 'Email is in use.', password: '', loading: false
+        ...state, error: 'Signup Failed.', password: '', loading: false
       };
     case TOGGLE_LOGIN_STATUS:
       return { ...state, loggedIn: action.loggedIn };
