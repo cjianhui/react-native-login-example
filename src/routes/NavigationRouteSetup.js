@@ -1,5 +1,5 @@
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
-import Login from '../components/LoginForm';
+import Login from '../components/LoginScreen';
 import Signup from '../components/SignupForm';
 import Home from '../components/Home';
 import AuthLoadingScreen from '../components/AuthLoadingScreen';
