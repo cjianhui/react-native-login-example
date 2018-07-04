@@ -30,6 +30,7 @@ const LoginScreen = () => {
                     onEmailChange={props.emailChanged}
                     onPasswordChange={props.passwordChanged}
                     handleLogin={props.loginUser}
+                    resetState={props.resetState}
                 />
             }
         </WithStore>

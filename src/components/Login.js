@@ -38,7 +38,7 @@ class Login extends Component {
     };
 
     handleSignup = () => {
-        this.props.resetState;
+        this.props.resetState();
         this.props.navigation.navigate(navigationRouteKeys.Signup);
     };
 
@@ -57,7 +57,6 @@ class Login extends Component {
             loggedIn,
             error
         } = this.props;
-
 
         return (
             <View>
